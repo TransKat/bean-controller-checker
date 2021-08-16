@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     padInitializeDefault(&pad);
 
     // Other initialization goes here. As a demonstration, we print hello world.
-    printf("Press + to return to hbmenu\r");
+    printf("Press Home button to return to hbmenu\r");
 
     // Main loop
     while (appletMainLoop())
@@ -35,10 +35,6 @@ int main(int argc, char* argv[])
         // padGetButtonsDown returns the set of buttons that have been
         // newly pressed in this frame compared to the previous one
         u64 kDown = padGetButtonsDown(&pad);
-
-        if (kDown & HidNpadButton_Plus){
-            break; // break in order to return to hbmenu
-        }
         if (kDown & HidNpadButton_A){
             printf("\e[1;1H\e[2J");
             printf("You pressed the A button\r");
