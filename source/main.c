@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 
 
     // Other initialization goes here. As a demonstration, we print hello world.
-    printf("Press Home button to return to hbmenu\r");
+    printf("Press + and - to return to hbmenu\r");
 
     bool stickState = false;
 
