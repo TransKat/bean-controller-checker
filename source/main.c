@@ -23,8 +23,11 @@ int main(int argc, char* argv[])
     PadState pad;
     padInitializeDefault(&pad);
 
+
     // Other initialization goes here. As a demonstration, we print hello world.
     printf("Press Home button to return to hbmenu\r");
+
+    bool stickState = false;
 
     // Main loop
     while (appletMainLoop())
@@ -35,69 +38,86 @@ int main(int argc, char* argv[])
         // padGetButtonsDown returns the set of buttons that have been
         // newly pressed in this frame compared to the previous one
         u64 kDown = padGetButtonsDown(&pad);
-        if (kDown & HidNpadButton_A){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the A button\r");
+
+        if (kDown & HidNpadButton_Minus && kDown & HidNpadButton_Plus){
+            break;
         }
-        if (kDown & HidNpadButton_B){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the B button\r");
+
+
+        if (kDown & HidNpadButton_StickL && kDown & HidNpadButton_StickR){
+            stickState = !stickState;
         }
-        if (kDown & HidNpadButton_X){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the X button\r");
-        }
-        if (kDown & HidNpadButton_Y){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the Y button\r");
-        }
-        if (kDown & HidNpadButton_Plus){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the + button\r");
-        }
-        if (kDown & HidNpadButton_Minus){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the - button\r");
-        }
-       if (kDown & HidNpadButton_Left){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the left dpad button\r");
-        }
-       if (kDown & HidNpadButton_Right){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the right dpad button\r");
-        }
-       if (kDown & HidNpadButton_Down){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the down dpad button\r");
-        }
-       if (kDown & HidNpadButton_Up){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the up dpad button\r");
-        }
-       if (kDown & HidNpadButton_ZR){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed ZR\r");
-        }
-       if (kDown & HidNpadButton_ZL){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed ZL\r");
-        }
-       if (kDown & HidNpadButton_L){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed L\r");
-        }
-       if (kDown & HidNpadButton_R){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed R\r");
-        }
-       if (kDown & HidNpadButton_StickL){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the left stick\r");
-        }
-       if (kDown & HidNpadButton_StickR){
-            printf("\e[1;1H\e[2J");
-            printf("You pressed the right stick\r");
+
+        if (stickState){
+            printf("LEFT: x: %d -- y: %d\n", pad.sticks[0].x, pad.sticks[0].y);
+            printf("RIGHT: x: %d -- y: %d\n", pad.sticks[1].x, pad.sticks[1].y);
+        } else {
+        
+            if (kDown & HidNpadButton_A){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the A button\r");
+            }
+            if (kDown & HidNpadButton_B){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the B button\r");
+            }
+            if (kDown & HidNpadButton_X){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the X button\r");
+            }
+            if (kDown & HidNpadButton_Y){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the Y button\r");
+            }
+            if (kDown & HidNpadButton_Plus){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the + button\r");
+            }
+            if (kDown & HidNpadButton_Minus){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the - button\r");
+            }
+        if (kDown & HidNpadButton_Left){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the left dpad button\r");
+            }
+        if (kDown & HidNpadButton_Right){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the right dpad button\r");
+            }
+        if (kDown & HidNpadButton_Down){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the down dpad button\r");
+            }
+        if (kDown & HidNpadButton_Up){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the up dpad button\r");
+            }
+        if (kDown & HidNpadButton_ZR){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed ZR\r");
+            }
+        if (kDown & HidNpadButton_ZL){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed ZL\r");
+            }
+        if (kDown & HidNpadButton_L){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed L\r");
+            }
+        if (kDown & HidNpadButton_R){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed R\r");
+            }
+        if (kDown & HidNpadButton_StickL){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the left stick\r");
+            }
+        if (kDown & HidNpadButton_StickR){
+                printf("\e[1;1H\e[2J");
+                printf("You pressed the right stick\r");
+            }
+
         }
 
         // Update the console, sending a new frame to the display
