@@ -24,10 +24,9 @@ int main(int argc, char* argv[])
     padInitializeDefault(&pad);
 
 
-    // Other initialization goes here. As a demonstration, we print hello world.
-    printf("Press + and - to return to hbmenu\r");
-
-    bool stickState = false;
+    // Other initialization goes here.
+    printf("Joystick functionality has been moved to BeanNX Stick Checker.\n\n\n");
+    printf("Press + to return to hbmenu\r");
 
     // Main loop
     while (appletMainLoop())
@@ -39,18 +38,8 @@ int main(int argc, char* argv[])
         // newly pressed in this frame compared to the previous one
         u64 kDown = padGetButtonsDown(&pad);
 
-        if (kDown & HidNpadButton_Minus && kDown & HidNpadButton_Plus){
+        if (kDown & HidNpadButton_Plus){
             break;
-        }
-
-
-        if (kDown & HidNpadButton_StickL && kDown & HidNpadButton_StickR){
-            stickState = !stickState;
-        }
-
-        if (stickState){
-            printf("LEFT: x: %d -- y: %d\n", pad.sticks[0].x, pad.sticks[0].y);
-            printf("RIGHT: x: %d -- y: %d\n", pad.sticks[1].x, pad.sticks[1].y);
         } else {
         
             if (kDown & HidNpadButton_A){
