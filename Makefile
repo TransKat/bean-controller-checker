@@ -37,8 +37,8 @@ include $(DEVKITPRO)/libnx/switch_rules
 #   of a homebrew executable (.nro). This is intended to be used for sysmodules.
 #   NACP building is skipped as well.
 #---------------------------------------------------------------------------------
-VERSION_MAJOR := 1
-VERSION_MINOR := 2
+VERSION_MAJOR := 2
+VERSION_MINOR := 1
 VERSION_MICRO := 0
 
 APP_TITLE	:=	BeanNX button checker
